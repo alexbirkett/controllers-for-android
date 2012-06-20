@@ -31,6 +31,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -41,7 +42,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
-public abstract class BaseControllerActivity extends Activity {
+public abstract class BaseControllerActivity extends FragmentActivity {
 
 	private Vector<Controller> mControllers;
 
@@ -650,14 +651,13 @@ public abstract class BaseControllerActivity extends Activity {
 	}
 
 	@Override
-	public Object onRetainNonConfigurationInstance() {
-		@SuppressWarnings("deprecation")
-		Object object = super.onRetainNonConfigurationInstance();
+	public Object onRetainCustomNonConfigurationInstance() {
+		Object object = super.onRetainCustomNonConfigurationInstance();
 
 		if (object == null) {
 			Iterator<Controller> iterator = mControllers.iterator();
 			while (iterator.hasNext()) {
-				object = iterator.next().onRetainNonConfigurationInstance();
+				object = iterator.next().onRetainCustomNonConfigurationInstance();
 				if (object != null) {
 					break;
 				}
