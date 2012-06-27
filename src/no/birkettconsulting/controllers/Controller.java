@@ -272,7 +272,10 @@ public abstract class Controller {
 
 	protected Object onRetainCustomNonConfigurationInstance() {
 		return null;
-
+	}
+	
+	protected Object onRetainNonConfigurationInstance() {
+		return null;
 	}
 
 	protected boolean onSearchRequested() {
