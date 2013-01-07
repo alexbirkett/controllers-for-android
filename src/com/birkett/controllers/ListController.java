@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-package no.birkettconsulting.controllers;
+package com.birkett.controllers;
 
+import com.birkett.controllers.R;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;

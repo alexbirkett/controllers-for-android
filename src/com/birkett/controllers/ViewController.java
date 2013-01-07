@@ -16,7 +16,7 @@
  * 
  */
 
-package no.birkettconsulting.controllers;
+package com.birkett.controllers;
 
 import android.content.Context;
 import android.view.LayoutInflater;
