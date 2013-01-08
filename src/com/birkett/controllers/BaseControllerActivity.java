@@ -21,6 +21,7 @@ package com.birkett.controllers;
 import java.util.Iterator;
 import java.util.Vector;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -41,6 +42,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+@SuppressLint("NewApi")
 public abstract class BaseControllerActivity extends Activity {
 
 	private Vector<Controller> mControllers;
@@ -57,6 +59,9 @@ public abstract class BaseControllerActivity extends Activity {
 		mControllers.remove(controller);
 	}
 
+	
+	protected abstract void createControllers();
+	
 	@Override
 	public void onContentChanged() {
 		super.onContentChanged();
@@ -96,6 +101,7 @@ public abstract class BaseControllerActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		createControllers();
 		Iterator<Controller> iterator = mControllers.iterator();
 		while (iterator.hasNext()) {
 			iterator.next().onCreate(savedInstanceState);
