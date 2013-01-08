@@ -16,7 +16,7 @@
  * 
  */
 
-package no.birkettconsulting.controllers;
+package com.birkett.controllers;
 
 import java.util.Iterator;
 import java.util.Vector;

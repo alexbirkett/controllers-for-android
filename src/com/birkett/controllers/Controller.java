@@ -16,8 +16,9 @@
  * 
  */
 
-package no.birkettconsulting.controllers;
+package com.birkett.controllers;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -38,6 +39,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+@SuppressLint("NewApi")
 public abstract class Controller {
 
 	protected Context mContext;
