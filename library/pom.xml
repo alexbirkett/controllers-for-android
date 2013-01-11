@@ -20,15 +20,15 @@
 
     <parent>
         <groupId>com.birkett</groupId>
-        <artifactId>android-controllers-parent</artifactId>
+        <artifactId>controllers-for-android-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <groupId>com.birkett</groupId>
-    <artifactId>android-controllers-lib</artifactId>
+    <artifactId>controllers-for-android</artifactId>
     <packaging>jar</packaging>
-    <name>Android Controllers Library</name>
+    <name>Controllers For Android Library</name>
 
     <dependencies>
         <dependency>

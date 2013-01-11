@@ -25,11 +25,11 @@
     </parent>
     
     <groupId>com.birkett</groupId>
-    <artifactId>android-controllers-parent</artifactId>
+    <artifactId>controllers-for-android-parent</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     
-    <name>Android Controllers Library (Parent)</name>
+    <name>Controllers For Android Library (Parent)</name>
     <description></description>
     <url></url>
 
@@ -50,15 +50,15 @@
     </properties>
 
     <scm>
-        <url>https://github.com/alexbirkett/android-controllers</url>
-        <connection>scm:git:git://github.com/alexbirkett/android-controllers.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:alexbirkett/android-controllers.git</developerConnection>
+        <url>https://github.com/alexbirkett/controllers-for-android</url>
+        <connection>scm:git:git://github.com/alexbirkett/controllers-for-android.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:alexbirkett/controllers-for-android.git</developerConnection>
       <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/alexbirkett/android-controllers/issues</url>
+        <url>https://github.com/alexbirkett/controllers-for-android/issues</url>
     </issueManagement>
 
     <licenses>
