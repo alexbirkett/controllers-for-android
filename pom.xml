@@ -30,8 +30,8 @@
     <version>0.0.1-SNAPSHOT</version>
     
     <name>Controllers For Android Library (Parent)</name>
-    <description></description>
-    <url></url>
+    <description>Helping to bring the single responsibility principle to Android development</description>
+    <url>https://github.com/alexbirkett/controllers-for-android</url>
 
     <modules>
         <module>library</module>
