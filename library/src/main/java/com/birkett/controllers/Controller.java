@@ -1,5 +1,5 @@
 /*
- * 
+ *
  *  Copyright (C) 2012 Alex Birkett
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- * 
+ *
  */
 
 package com.birkett.controllers;
@@ -42,272 +42,189 @@ import android.view.WindowManager;
 @SuppressLint("NewApi")
 public abstract class Controller {
 
-	protected Context mContext;
-
-	protected Controller(Context context) {
-		mContext = context;
-	}
-
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
-	}
-
-	protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) {
-		
-	}
-	
-	protected void onChildTitleChanged(Activity childActivity, CharSequence title) {
-		
-	}
-	
-	protected void onCreate(Bundle savedInstanceState) {
-		
-	}
-	
-	protected Dialog onCreateDialog(int id) {
-		return null;
-	}
-	
-	protected Dialog onCreateDialog(int id, Bundle args) {
-		return null;
-	}
-	
-	protected void onDestroy() {
-		
-	}
-	
-	protected void onNewIntent(Intent intent) {
-		
-	}
-	
-	protected void onPause() {
-		
-	}
-	
-	protected void onPostCreate(Bundle savedInstanceState) {
-		
-	}
-	
-	protected void onPostResume() {
-		
-	}
-	
-	protected void onPrepareDialog(int id, Dialog dialog) {
-		
-	}
-	
-	protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
-		
-	}
-	
-	protected void onRestart() {
-		
-	}
-	
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		
-	}
-	
-	protected void onResume() {
-		
-	}
-	
-	protected void onSaveInstanceState(Bundle outState) {
-		
-	}
-	
-	protected void onStart() {
-		
-	}
-	
-	protected void onStop() {
-		
-	}
-	
-	protected void onTitleChanged(CharSequence title, int color) {
-		
-	}
-	
-	protected void onUserLeaveHint() {
-		
-	}
-		
-	protected void onActionModeFinished(ActionMode mode) {
-
-	}
-
-
-	protected void onActionModeStarted(ActionMode mode) {
-
-	}
-
-	protected void onAttachFragment(Fragment fragment) {
-
-	}
+    protected Context mContext;
 
-	protected void onAttachedToWindow() {
+    protected Controller(Context context) {
+        mContext = context;
+    }
 
-	}
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) { }
 
-	protected void onBackPressed() {
+    protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) { }
 
-	}
+    protected void onChildTitleChanged(Activity childActivity, CharSequence title) { }
 
-	protected void onConfigurationChanged(Configuration newConfig) {
+    protected void onCreate(Bundle savedInstanceState) { }
 
-	}
+    protected Dialog onCreateDialog(int id) {
+        return null;
+    }
 
-	protected void onContentChanged() {
+    protected Dialog onCreateDialog(int id, Bundle args) {
+        return null;
+    }
 
-	}
+    protected void onDestroy() { }
 
-	protected boolean onContextItemSelected(MenuItem item) {
-		return false;
-	}
+    protected void onNewIntent(Intent intent) { }
 
-	protected void onContextMenuClosed(Menu menu) {
+    protected void onPause() { }
 
-	}
+    protected void onPostCreate(Bundle savedInstanceState) { }
 
-	protected void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenu.ContextMenuInfo menuInfo) {
+    protected void onPostResume() { }
 
-	}
+    protected void onPrepareDialog(int id, Dialog dialog) { }
 
-	protected CharSequence onCreateDescription() {
-		return null;
-	}
+    protected void onPrepareDialog(int id, Dialog dialog, Bundle args) { }
 
-	protected boolean onCreateOptionsMenu(Menu menu) {
-		return false;
+    protected void onRestart() { }
 
-	}
+    protected void onRestoreInstanceState(Bundle savedInstanceState) { }
 
-	protected boolean onCreatePanelMenu(int featureId, Menu menu) {
-		return false;
+    protected void onResume() { }
 
-	}
+    protected void onSaveInstanceState(Bundle outState) { }
 
-	protected View onCreatePanelView(int featureId) {
-		return null;
-	}
+    protected void onStart() { }
 
-	protected boolean onCreateThumbnail(Bitmap outBitmap, Canvas canvas) {
-		return false;
-	}
+    protected void onStop() { }
 
-	protected View onCreateView(View parent, String name, Context context,
-			AttributeSet attrs) {
-				return null;
-	}
+    protected void onTitleChanged(CharSequence title, int color) { }
 
-	protected View onCreateView(String name, Context context, AttributeSet attrs) {
-		return null;
-	}
+    protected void onUserLeaveHint() { }
 
-	protected void onDetachedFromWindow() {
+    protected void onActionModeFinished(ActionMode mode) { }
 
-	}
+    protected void onActionModeStarted(ActionMode mode) { }
 
-	protected boolean onGenericMotionEvent(MotionEvent event) {
-		return false;
+    protected void onAttachFragment(Fragment fragment) { }
 
-	}
+    protected void onAttachedToWindow() { }
 
-	protected boolean onKeyDown(int keyCode, KeyEvent event) {
-		return false;
-	}
+    protected void onBackPressed() { }
 
-	protected boolean onKeyLongPress(int keyCode, KeyEvent event) {
-		return false;
+    protected void onConfigurationChanged(Configuration newConfig) { }
 
-	}
+    protected void onContentChanged() { }
 
-	protected boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
-		return false;
+    protected boolean onContextItemSelected(MenuItem item) {
+        return false;
+    }
 
-	}
+    protected void onContextMenuClosed(Menu menu) { }
 
-	protected boolean onKeyShortcut(int keyCode, KeyEvent event) {
-		return false;
-	}
+    protected void onCreateContextMenu(ContextMenu menu, View v,
+            ContextMenu.ContextMenuInfo menuInfo) {
+    }
 
-	protected boolean onKeyUp(int keyCode, KeyEvent event) {
-		return false;
-	}
+    protected CharSequence onCreateDescription() {
+        return null;
+    }
 
-	protected void onLowMemory() {
+    protected boolean onCreateOptionsMenu(Menu menu) {
+        return false;
+    }
 
-	}
+    protected boolean onCreatePanelMenu(int featureId, Menu menu) {
+        return false;
+    }
 
-	protected boolean onMenuItemSelected(int featureId, MenuItem item) {
-		return false;
-	}
+    protected View onCreatePanelView(int featureId) {
+        return null;
+    }
 
-	protected boolean onMenuOpened(int featureId, Menu menu) {
-		return false;
+    protected boolean onCreateThumbnail(Bitmap outBitmap, Canvas canvas) {
+        return false;
+    }
 
-	}
+    protected View onCreateView(View parent, String name, Context context,
+            AttributeSet attrs) {
+                return null;
+    }
 
-	protected boolean onOptionsItemSelected(MenuItem item) {
-		return false;
+    protected View onCreateView(String name, Context context, AttributeSet attrs) {
+        return null;
+    }
 
-	}
+    protected void onDetachedFromWindow() { }
 
-	protected void onOptionsMenuClosed(Menu menu) {
+    protected boolean onGenericMotionEvent(MotionEvent event) {
+        return false;
+    }
 
-	}
+    protected boolean onKeyDown(int keyCode, KeyEvent event) {
+        return false;
+    }
 
-	protected void onPanelClosed(int featureId, Menu menu) {
+    protected boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return false;
+    }
 
-	}
+    protected boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
+        return false;
+    }
 
-	protected boolean onPrepareOptionsMenu(Menu menu) {
-		return false;
+    protected boolean onKeyShortcut(int keyCode, KeyEvent event) {
+        return false;
+    }
 
-	}
+    protected boolean onKeyUp(int keyCode, KeyEvent event) {
+        return false;
+    }
 
-	protected boolean onPreparePanel(int featureId, View view, Menu menu) {
-		return false;
+    protected void onLowMemory() { }
 
-	}
+    protected boolean onMenuItemSelected(int featureId, MenuItem item) {
+        return false;
+    }
 
-	protected Object onRetainNonConfigurationInstance() {
-		return null;
+    protected boolean onMenuOpened(int featureId, Menu menu) {
+        return false;
 
-	}
+    }
 
-	protected boolean onSearchRequested() {
-		return false;
-	}
+    protected boolean onOptionsItemSelected(MenuItem item) {
+        return false;
+    }
 
-	protected boolean onTouchEvent(MotionEvent event) {
-		return false;
+    protected void onOptionsMenuClosed(Menu menu) { }
 
-	}
+    protected void onPanelClosed(int featureId, Menu menu) { }
 
-	protected boolean onTrackballEvent(MotionEvent event) {
-		return false;
+    protected boolean onPrepareOptionsMenu(Menu menu) {
+        return false;
+    }
 
-	}
+    protected boolean onPreparePanel(int featureId, View view, Menu menu) {
+        return false;
+    }
 
-	protected void onTrimMemory(int level) {
+    protected Object onRetainNonConfigurationInstance() {
+        return null;
+    }
 
-	}
+    protected boolean onSearchRequested() {
+        return false;
+    }
 
-	protected void onUserInteraction() {
+    protected boolean onTouchEvent(MotionEvent event) {
+        return false;
+    }
 
-	}
+    protected boolean onTrackballEvent(MotionEvent event) {
+        return false;
+    }
 
-	protected void onWindowAttributesChanged(WindowManager.LayoutParams params) {
+    protected void onTrimMemory(int level) { }
 
-	}
+    protected void onUserInteraction() { }
 
-	protected void onWindowFocusChanged(boolean hasFocus) {
+    protected void onWindowAttributesChanged(WindowManager.LayoutParams params) { }
 
-	}
+    protected void onWindowFocusChanged(boolean hasFocus) { }
 
-	protected ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
-		return null;
-	}
+    protected ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
+        return null;
+    }
 }
