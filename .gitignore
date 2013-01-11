@@ -12,8 +12,12 @@
 bin/
 gen/
 
+#output files
+library/target
+
 # Local configuration file (sdk path, etc)
 local.properties
 
 #InteliJ IDEA Project files
 .idea
+*.iml
