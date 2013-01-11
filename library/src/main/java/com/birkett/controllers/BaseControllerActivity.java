@@ -19,7 +19,7 @@
 package com.birkett.controllers;
 
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -45,10 +45,10 @@ import android.view.WindowManager;
 @SuppressLint("NewApi")
 public abstract class BaseControllerActivity extends Activity {
 
-    private Vector<Controller> mControllers;
+    private ArrayList<Controller> mControllers;
 
     protected BaseControllerActivity() {
-        mControllers = new Vector<Controller>();
+        mControllers = new ArrayList<Controller>();
     }
 
     public void addController(Controller controller) {
