@@ -6,7 +6,7 @@ Controllers help you to split up unrelated functionality in activity classes int
 
 ```xml
 <dependency>
-            <groupId>com.birkett</groupId>
+            <groupId>no.birkett</groupId>
             <artifactId>controllers-for-android</artifactId>
             <version>(insert latest version)</version>
 </dependency>
