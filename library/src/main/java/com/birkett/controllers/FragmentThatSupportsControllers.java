@@ -1,3 +1,21 @@
+/*
+ *
+ *  Copyright (C) 2012-2013 Alex Birkett
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+
 package com.birkett.controllers;
 
 import android.app.Activity;
@@ -5,27 +23,30 @@ import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu;
+import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public abstract class BaseControllerFragment extends Fragment {
+public abstract class FragmentThatSupportsControllers extends Fragment {
 
-    private ArrayList<FragmentController> mControllers;
+    private ArrayList<Controller> mControllers;
 
-    protected BaseControllerFragment() {
-        mControllers = new ArrayList<FragmentController>();
+    protected FragmentThatSupportsControllers() {
+        mControllers = new ArrayList<Controller>();
     }
 
-    public void addController(FragmentController controller) {
+    public void addController(Controller controller) {
         mControllers.add(controller);
     }
 
-    public void removeController(FragmentController controller) {
+    public void removeController(Controller controller) {
         mControllers.remove(controller);
     }
 
@@ -38,7 +59,7 @@ public abstract class BaseControllerFragment extends Fragment {
     @Override
     public void onInflate(AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(attrs, savedInstanceState);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onInflate(attrs, savedInstanceState);
         }
@@ -46,7 +67,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(activity, attrs, savedInstanceState);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onInflate(activity, attrs, savedInstanceState);
         }
@@ -54,7 +75,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onAttach(activity);
         }
@@ -65,7 +86,7 @@ public abstract class BaseControllerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createControllers();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onCreate(savedInstanceState);
         }
@@ -73,19 +94,29 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onViewCreated(view, savedInstanceState);
         }
     }
 
-    //public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) { return null; }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        Iterator<Controller> iterator = mControllers.iterator();
+        while (iterator.hasNext()) {
+            view = iterator.next().onCreateView(inflater, container, savedInstanceState);
+            if (view != null) {
+                break;
+            }
+        }
+        return view;
+    }
 
     //public View getView() { return null; }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onActivityCreated(savedInstanceState);
         }
@@ -93,7 +124,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onStart() {
         super.onStart();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onStart();
         }
@@ -101,7 +132,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onResume() {
         super.onResume();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onResume();
         }
@@ -109,7 +140,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onSaveInstanceState(outState);
         }
@@ -117,7 +148,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onConfigurationChanged(newConfig);
         }
@@ -125,7 +156,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onPause() {
         super.onPause();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onPause();
         }
@@ -133,7 +164,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onStop() {
         super.onStop();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onStop();
         }
@@ -141,7 +172,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onLowMemory() {
         super.onLowMemory();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onLowMemory();
         }
@@ -149,7 +180,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onTrimMemory(level);
         }
@@ -157,7 +188,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onDestroyView() {
         super.onDestroyView();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onDestroyView();
         }
@@ -165,7 +196,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onDestroy() {
         super.onDestroy();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onDestroy();
         }
@@ -173,7 +204,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onDetach() {
         super.onDetach();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onDetach();
         }
@@ -181,7 +212,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onCreateOptionsMenu(menu, inflater);
         }
@@ -189,7 +220,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onPrepareOptionsMenu(menu);
         }
@@ -197,7 +228,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onDestroyOptionsMenu() {
         super.onDestroyOptionsMenu();
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onDestroyOptionsMenu();
         }
@@ -205,7 +236,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean returnValue = super.onOptionsItemSelected(item);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onOptionsItemSelected(item);
         }
@@ -214,7 +245,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onOptionsMenuClosed(Menu menu) {
         super.onOptionsMenuClosed(menu);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onOptionsMenuClosed(menu);
         }
@@ -222,7 +253,7 @@ public abstract class BaseControllerFragment extends Fragment {
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        Iterator<FragmentController> iterator = mControllers.iterator();
+        Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onCreateContextMenu(menu, v, menuInfo);
         }

@@ -1,6 +1,6 @@
 /*
  *
- *  Copyright (C) 2012 Alex Birkett
+ *  Copyright (C) 2012-2013 Alex Birkett
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,10 +33,13 @@ import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 @SuppressLint("NewApi")
@@ -48,8 +51,8 @@ public abstract class Controller {
         mContext = context;
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) { }
-
+    public void onActivityResult(int requestCode, int resultCode, android.content.Intent data) { }
+    
     protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) { }
 
     protected void onChildTitleChanged(Activity childActivity, CharSequence title) { }
@@ -227,4 +230,37 @@ public abstract class Controller {
     protected ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
         return null;
     }
+
+
+
+
+    // Fragment specific methods
+    /**
+     * @deprecated
+     */
+    @java.lang.Deprecated
+    public void onInflate(AttributeSet attrs, Bundle savedInstanceState) { }
+
+    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) { }
+
+    public void onAttach(Activity activity) { }
+
+    //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
+
+    public void onViewCreated(View view, Bundle savedInstanceState) { }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { return null; }
+
+    // public View getView() { return null; }
+
+    public void onActivityCreated(Bundle savedInstanceState) { }
+
+    public void onDestroyView() { }
+
+    public void onDetach() { }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) { }
+
+    public void onDestroyOptionsMenu() { }
+
 }

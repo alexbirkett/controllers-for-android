@@ -1,6 +1,6 @@
 /*
  *
- *  Copyright (C) 2012 Alex Birkett
+ *  Copyright (C) 2012-2013 Alex Birkett
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -43,11 +43,11 @@ import android.view.View;
 import android.view.WindowManager;
 
 @SuppressLint("NewApi")
-public abstract class BaseControllerActivity extends Activity {
+public abstract class ActivityThatSupportsControllers extends Activity {
 
     private ArrayList<Controller> mControllers;
 
-    protected BaseControllerActivity() {
+    protected ActivityThatSupportsControllers() {
         mControllers = new ArrayList<Controller>();
     }
 
