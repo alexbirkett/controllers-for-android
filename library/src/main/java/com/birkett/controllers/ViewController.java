@@ -23,16 +23,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class ViewController extends Controller {
+public class ViewController extends Controller {
 
     protected View mView;
 
-    protected ViewController(Context context) {
+    public ViewController(Context context) {
         super(context);
     }
 
     public View getView() {
         return mView;
+    }
+
+    public void setView(View view) {
+       mView = view;
     }
 
     public void setContentView(int layoutResId) {
