@@ -27,7 +27,7 @@
     <groupId>no.birkett</groupId>
     <artifactId>controllers-for-android-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>20130207</version>
     
     <name>Controllers For Android Library (Parent)</name>
     <description>Helping to bring the single responsibility principle to Android development</description>

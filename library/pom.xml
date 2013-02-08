@@ -21,7 +21,7 @@
     <parent>
         <groupId>no.birkett</groupId>
         <artifactId>controllers-for-android-parent</artifactId>
-        <version>0.0.2-SNAPSHOT</version>
+        <version>20130207</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
