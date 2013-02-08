@@ -125,7 +125,7 @@ public abstract class Controller {
         return null;
     }
 
-    protected boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         return false;
     }
 
@@ -258,8 +258,6 @@ public abstract class Controller {
     public void onDestroyView() { }
 
     public void onDetach() { }
-
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) { }
 
     public void onDestroyOptionsMenu() { }
 

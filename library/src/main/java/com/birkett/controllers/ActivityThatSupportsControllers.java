@@ -37,6 +37,7 @@ import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -360,10 +361,11 @@ public abstract class ActivityThatSupportsControllers extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
         boolean returnValue = super.onCreateOptionsMenu(menu);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
-            if (iterator.next().onCreateOptionsMenu(menu)) {
+            if (iterator.next().onCreateOptionsMenu(menu, inflater)) {
                 returnValue = true;
             }
         }
