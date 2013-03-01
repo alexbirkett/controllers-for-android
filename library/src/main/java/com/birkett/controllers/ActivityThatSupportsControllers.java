@@ -308,10 +308,13 @@ public abstract class ActivityThatSupportsControllers extends Activity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onBackPressed();
+        boolean consumed = false;
+        while (iterator.hasNext() && !consumed) {
+            consumed = iterator.next().onBackPressed();
+        }
+        if (!consumed) {
+            super.onBackPressed();
         }
     }
 

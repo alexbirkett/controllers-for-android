@@ -105,7 +105,7 @@ public abstract class Controller {
 
     protected void onAttachedToWindow() { }
 
-    protected void onBackPressed() { }
+    protected boolean onBackPressed() { return false; }
 
     protected void onConfigurationChanged(Configuration newConfig) { }
 
