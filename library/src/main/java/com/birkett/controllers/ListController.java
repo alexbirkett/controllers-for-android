@@ -196,9 +196,7 @@ public class ListController extends ViewController {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.list_content,
-        //        container, false);
+                             Bundle savedInstanceState, View view) {
         return getView();
     }
 

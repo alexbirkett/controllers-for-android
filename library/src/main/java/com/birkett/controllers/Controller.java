@@ -249,7 +249,7 @@ public abstract class Controller {
 
     public void onViewCreated(View view, Bundle savedInstanceState) { }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { return null; }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState, View view) { return view; }
 
     // public View getView() { return null; }
 

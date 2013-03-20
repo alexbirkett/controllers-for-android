@@ -104,10 +104,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
-            view = iterator.next().onCreateView(inflater, container, savedInstanceState);
-            if (view != null) {
-                break;
-            }
+            view = iterator.next().onCreateView(inflater, container, savedInstanceState, view);
         }
         return view;
     }
