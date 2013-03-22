@@ -20,6 +20,7 @@ package com.birkett.controllers;
 
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -46,7 +47,7 @@ import android.view.WindowManager;
 @SuppressLint("NewApi")
 public abstract class ActivityThatSupportsControllers extends Activity {
 
-    private ArrayList<Controller> mControllers;
+    protected ArrayList<Controller> mControllers;
 
     protected ActivityThatSupportsControllers() {
         mControllers = new ArrayList<Controller>();
@@ -60,7 +61,9 @@ public abstract class ActivityThatSupportsControllers extends Activity {
         mControllers.remove(controller);
     }
 
-    protected abstract void createControllers();
+    public List getControllersList() {
+        return mControllers;
+    }
 
     @Override
     public void onContentChanged() {
@@ -101,7 +104,6 @@ public abstract class ActivityThatSupportsControllers extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createControllers();
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onCreate(savedInstanceState);

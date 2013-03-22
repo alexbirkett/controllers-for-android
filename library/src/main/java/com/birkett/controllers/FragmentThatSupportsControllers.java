@@ -33,10 +33,11 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public abstract class FragmentThatSupportsControllers extends Fragment {
 
-    private ArrayList<Controller> mControllers;
+    protected ArrayList<Controller> mControllers;
 
     protected FragmentThatSupportsControllers() {
         mControllers = new ArrayList<Controller>();
@@ -50,7 +51,9 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         mControllers.remove(controller);
     }
 
-    protected abstract void createControllers();
+    public List getControllersList() {
+        return mControllers;
+    }
 
     /**
      * @deprecated
@@ -85,7 +88,6 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createControllers();
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onCreate(savedInstanceState);
