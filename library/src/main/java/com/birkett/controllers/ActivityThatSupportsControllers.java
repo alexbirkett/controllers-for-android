@@ -656,7 +656,7 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
         if (object == null) {
             Iterator<Controller> iterator = mControllers.iterator();
             while (iterator.hasNext()) {
-                object = iterator.next().onRetainNonConfigurationInstance();
+                object = iterator.next().onRetainCustomNonConfigurationInstance();
                 if (object != null) {
                     break;
                 }
