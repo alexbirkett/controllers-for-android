@@ -201,7 +201,7 @@ public abstract class Controller {
         return false;
     }
 
-    protected Object onRetainCustomNonConfigurationInstance() {
+    protected Object onRetainNonConfigurationInstance() {
         return null;
     }
 
