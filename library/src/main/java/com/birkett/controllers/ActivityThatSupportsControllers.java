@@ -650,8 +650,7 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
 
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
-        @SuppressWarnings("deprecation")
-        Object object = super.onRetainNonConfigurationInstance();
+        Object object = super.onRetainCustomNonConfigurationInstance();
 
         if (object == null) {
             Iterator<Controller> iterator = mControllers.iterator();
