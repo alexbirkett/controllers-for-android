@@ -19,9 +19,7 @@
 package com.birkett.controllers;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -29,6 +27,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -55,7 +55,7 @@ public abstract class Controller {
     
     protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) { }
 
-    protected void onChildTitleChanged(Activity childActivity, CharSequence title) { }
+    protected void onChildTitleChanged(FragmentActivity childActivity, CharSequence title) { }
 
     protected void onCreate(Bundle savedInstanceState) { }
 
@@ -241,9 +241,9 @@ public abstract class Controller {
     @java.lang.Deprecated
     public void onInflate(AttributeSet attrs, Bundle savedInstanceState) { }
 
-    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) { }
+    public void onInflate(FragmentActivity activity, AttributeSet attrs, Bundle savedInstanceState) { }
 
-    public void onAttach(Activity activity) { }
+    public void onAttach(FragmentActivity activity) { }
 
     //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
 

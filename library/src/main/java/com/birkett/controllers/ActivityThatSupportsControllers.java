@@ -23,9 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -33,6 +31,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -45,7 +45,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 @SuppressLint("NewApi")
-public abstract class ActivityThatSupportsControllers extends Activity {
+public abstract class ActivityThatSupportsControllers extends FragmentActivity {
 
     protected ArrayList<Controller> mControllers;
 
@@ -89,15 +89,6 @@ public abstract class ActivityThatSupportsControllers extends Activity {
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onApplyThemeResource(theme, resid, first);
-        }
-    }
-
-    @Override
-    protected void onChildTitleChanged(Activity childActivity, CharSequence title) {
-        super.onChildTitleChanged(childActivity, title);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onChildTitleChanged(childActivity, title);
         }
     }
 
@@ -658,7 +649,7 @@ public abstract class ActivityThatSupportsControllers extends Activity {
     }
 
     @Override
-    public Object onRetainNonConfigurationInstance() {
+    public Object onRetainCustomNonConfigurationInstance() {
         @SuppressWarnings("deprecation")
         Object object = super.onRetainNonConfigurationInstance();
 
