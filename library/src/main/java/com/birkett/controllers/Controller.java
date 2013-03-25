@@ -55,8 +55,6 @@ public abstract class Controller {
     
     protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) { }
 
-    protected void onChildTitleChanged(FragmentActivity childActivity, CharSequence title) { }
-
     protected void onCreate(Bundle savedInstanceState) { }
 
     protected Dialog onCreateDialog(int id) {
@@ -235,12 +233,6 @@ public abstract class Controller {
 
 
     // Fragment specific methods
-    /**
-     * @deprecated
-     */
-    @java.lang.Deprecated
-    public void onInflate(AttributeSet attrs, Bundle savedInstanceState) { }
-
     public void onInflate(FragmentActivity activity, AttributeSet attrs, Bundle savedInstanceState) { }
 
     public void onAttach(FragmentActivity activity) { }
