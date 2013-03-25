@@ -18,10 +18,10 @@
 
 package com.birkett.controllers;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -33,10 +33,11 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public abstract class FragmentThatSupportsControllers extends Fragment {
 
-    private ArrayList<Controller> mControllers;
+    protected ArrayList<Controller> mControllers;
 
     protected FragmentThatSupportsControllers() {
         mControllers = new ArrayList<Controller>();
@@ -50,22 +51,12 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         mControllers.remove(controller);
     }
 
-    protected abstract void createControllers();
-
-    /**
-     * @deprecated
-     */
-    @java.lang.Deprecated
-    @Override
-    public void onInflate(AttributeSet attrs, Bundle savedInstanceState) {
-        super.onInflate(attrs, savedInstanceState);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onInflate(attrs, savedInstanceState);
-        }
+    public List getControllersList() {
+        return mControllers;
     }
 
-    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
+
+    public void onInflate(FragmentActivity activity, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(activity, attrs, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
@@ -73,7 +64,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
-    public void onAttach(Activity activity) {
+    public void onAttach(FragmentActivity activity) {
         super.onAttach(activity);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
@@ -85,7 +76,6 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createControllers();
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onCreate(savedInstanceState);
@@ -104,10 +94,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
-            view = iterator.next().onCreateView(inflater, container, savedInstanceState);
-            if (view != null) {
-                break;
-            }
+            view = iterator.next().onCreateView(inflater, container, savedInstanceState, view);
         }
         return view;
     }
@@ -175,14 +162,6 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onLowMemory();
-        }
-    }
-
-    public void onTrimMemory(int level) {
-        super.onTrimMemory(level);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onTrimMemory(level);
         }
     }
 

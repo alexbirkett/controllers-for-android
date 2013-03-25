@@ -20,11 +20,10 @@ package com.birkett.controllers;
 
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -32,20 +31,23 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
 @SuppressLint("NewApi")
-public abstract class ActivityThatSupportsControllers extends Activity {
+public abstract class ActivityThatSupportsControllers extends FragmentActivity {
 
-    private ArrayList<Controller> mControllers;
+    protected ArrayList<Controller> mControllers;
 
     protected ActivityThatSupportsControllers() {
         mControllers = new ArrayList<Controller>();
@@ -59,7 +61,9 @@ public abstract class ActivityThatSupportsControllers extends Activity {
         mControllers.remove(controller);
     }
 
-    protected abstract void createControllers();
+    public List getControllersList() {
+        return mControllers;
+    }
 
     @Override
     public void onContentChanged() {
@@ -89,18 +93,8 @@ public abstract class ActivityThatSupportsControllers extends Activity {
     }
 
     @Override
-    protected void onChildTitleChanged(Activity childActivity, CharSequence title) {
-        super.onChildTitleChanged(childActivity, title);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onChildTitleChanged(childActivity, title);
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createControllers();
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
             iterator.next().onCreate(savedInstanceState);
@@ -307,10 +301,13 @@ public abstract class ActivityThatSupportsControllers extends Activity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onBackPressed();
+        boolean consumed = false;
+        while (iterator.hasNext() && !consumed) {
+            consumed = iterator.next().onBackPressed();
+        }
+        if (!consumed) {
+            super.onBackPressed();
         }
     }
 
@@ -360,10 +357,11 @@ public abstract class ActivityThatSupportsControllers extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
         boolean returnValue = super.onCreateOptionsMenu(menu);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
-            if (iterator.next().onCreateOptionsMenu(menu)) {
+            if (iterator.next().onCreateOptionsMenu(menu, inflater)) {
                 returnValue = true;
             }
         }
@@ -651,7 +649,7 @@ public abstract class ActivityThatSupportsControllers extends Activity {
     }
 
     @Override
-    public Object onRetainNonConfigurationInstance() {
+    public Object onRetainCustomNonConfigurationInstance() {
         @SuppressWarnings("deprecation")
         Object object = super.onRetainNonConfigurationInstance();
 

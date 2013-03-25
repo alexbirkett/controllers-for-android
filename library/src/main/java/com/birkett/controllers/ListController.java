@@ -170,8 +170,14 @@ public class ListController extends ViewController {
     CharSequence mEmptyText;
     boolean mListShown;
 
+    ListControllerObserver mObserver;
+
     public ListController(Context context) {
         super(context);
+    }
+
+    public void setObserver(ListControllerObserver observer) {
+        this.mObserver = observer;
     }
 
     /**
@@ -190,9 +196,7 @@ public class ListController extends ViewController {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.list_content,
-        //        container, false);
+                             Bundle savedInstanceState, View view) {
         return getView();
     }
 
@@ -230,6 +234,10 @@ public class ListController extends ViewController {
      * @param id The row id of the item that was clicked
      */
     public void onListItemClick(ListView l, View v, int position, long id) {
+        if (mObserver != null) {
+            mObserver.onListItemClick(l, v, position, id);
+        }
+
     }
 
     /**
