@@ -21,6 +21,7 @@ package com.birkett.controllers;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -253,4 +254,11 @@ public abstract class Controller {
 
     public void onDestroyOptionsMenu() { }
 
+    // DialogFragment specific methods
+
+    protected Dialog onCreateDialog(Bundle savedInstanceState, Dialog dialog) { return dialog; }
+
+    public void onCancel(DialogInterface dialog) { }
+
+    public void onDismiss(DialogInterface dialog) { }
 }
