@@ -146,18 +146,18 @@ import android.widget.TextView;
  * @see android.widget.ListView
  */
 public class ListController extends ViewController {
-    final private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
 
-    final private Runnable mRequestFocus = new Runnable() {
+    private final Runnable mRequestFocus = new Runnable() {
         public void run() {
             mList.focusableViewAvailable(mList);
         }
     };
 
-    final private AdapterView.OnItemClickListener mOnClickListener
+    private final AdapterView.OnItemClickListener mOnClickListener
             = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            onListItemClick((ListView)parent, v, position, id);
+            onListItemClick((ListView) parent, v, position, id);
         }
     };
 
@@ -217,7 +217,9 @@ public class ListController extends ViewController {
         mHandler.removeCallbacks(mRequestFocus);
         mList = null;
         mListShown = false;
-        mEmptyView = mProgressContainer = mListContainer = null;
+        mEmptyView = null;
+        mProgressContainer = null;
+        mListContainer = null;
         mStandardEmptyView = null;
         super.onDestroyView();
     }
@@ -257,8 +259,7 @@ public class ListController extends ViewController {
     }
 
     /**
-     * Set the currently selected list item to the specified
-     * position with the adapter's data
+     * Set the currently selected list item to the specified position with the adapter's data.
      *
      * @param position
      */
@@ -292,6 +293,8 @@ public class ListController extends ViewController {
     }
 
     /**
+     * Set the text for the empty list placeholder view.
+     *
      * The default content for a ListFragment has a TextView that can
      * be shown when the list is empty.  If you would like to have it
      * shown, call this method to supply the text it should use.
@@ -396,7 +399,7 @@ public class ListController extends ViewController {
             throw new IllegalStateException("Content view not yet created");
         }
         if (root instanceof ListView) {
-            mList = (ListView)root;
+            mList = (ListView) root;
         } else {
             mStandardEmptyView = null; //(TextView)root.findViewById(R.id.internalEmpty);
             if (mStandardEmptyView == null) {
@@ -412,11 +415,11 @@ public class ListController extends ViewController {
                         "Content has view with id attribute 'android.R.id.list' "
                                 + "that is not a ListView class");
             }
-            mList = (ListView)rawListView;
+            mList = (ListView) rawListView;
             if (mList == null) {
                 throw new RuntimeException(
-                        "Your content must have a ListView whose id attribute is " +
-                                "'android.R.id.list'");
+                        "Your content must have a ListView whose id attribute is "
+                                + "'android.R.id.list'");
             }
             if (mEmptyView != null) {
                 mList.setEmptyView(mEmptyView);

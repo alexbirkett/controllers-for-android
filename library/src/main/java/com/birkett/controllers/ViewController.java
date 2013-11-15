@@ -25,10 +25,11 @@ import android.view.ViewGroup;
 
 public class ViewController extends Controller {
 
+    protected Context mContext;
     protected View mView;
 
     public ViewController(Context context) {
-        super(context);
+        mContext = context;
     }
 
     public View getView() {

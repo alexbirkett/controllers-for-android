@@ -27,7 +27,7 @@
     <groupId>no.birkett</groupId>
     <artifactId>controllers-for-android-parent</artifactId>
     <packaging>pom</packaging>
-    <version>20130503</version>
+    <version>20131115</version>
     
     <name>Controllers For Android Library (Parent)</name>
     <description>Helping to bring the single responsibility principle to Android development</description>
@@ -94,7 +94,7 @@
                 <plugin>
                     <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                     <artifactId>android-maven-plugin</artifactId>
-                    <version>3.3.2</version>
+                    <version>3.8.0</version>
                     <configuration>
                         <sdk>
                             <platform>${android.platform}</platform>
@@ -145,6 +145,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
