@@ -46,14 +46,11 @@ import android.view.WindowManager;
 @SuppressLint("NewApi")
 public abstract class Controller {
 
-    protected Context mContext;
-
-    protected Controller(Context context) {
-        mContext = context;
+    protected Controller() {
     }
 
     public void onActivityResult(int requestCode, int resultCode, android.content.Intent data) { }
-    
+
     protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) { }
 
     protected void onCreate(Bundle savedInstanceState) { }
@@ -242,7 +239,9 @@ public abstract class Controller {
 
     public void onViewCreated(View view, Bundle savedInstanceState) { }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState, View view) { return view; }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState, View view) {
+        return view;
+    }
 
     // public View getView() { return null; }
 
