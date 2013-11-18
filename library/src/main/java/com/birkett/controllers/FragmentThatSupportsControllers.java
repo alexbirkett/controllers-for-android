@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -56,7 +56,8 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
     }
 
 
-    public void onInflate(FragmentActivity activity, AttributeSet attrs, Bundle savedInstanceState) {
+    @Override
+    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(activity, attrs, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
@@ -64,7 +65,8 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
-    public void onAttach(FragmentActivity activity) {
+    @Override
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
@@ -74,6 +76,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
 
     //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -82,6 +85,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -90,6 +94,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -101,6 +106,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
 
     //public View getView() { return null; }
 
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -109,6 +115,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onStart() {
         super.onStart();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -117,6 +124,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onResume() {
         super.onResume();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -125,6 +133,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -133,6 +142,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -141,6 +151,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onPause() {
         super.onPause();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -149,6 +160,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onStop() {
         super.onStop();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -157,6 +169,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onLowMemory() {
         super.onLowMemory();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -165,6 +178,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -173,6 +187,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onDestroy() {
         super.onDestroy();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -181,6 +196,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onDetach() {
         super.onDetach();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -189,6 +205,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -197,6 +214,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -205,6 +223,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onDestroyOptionsMenu() {
         super.onDestroyOptionsMenu();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -213,6 +232,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean returnValue = super.onOptionsItemSelected(item);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -222,6 +242,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         return returnValue;
     }
 
+    @Override
     public void onOptionsMenuClosed(Menu menu) {
         super.onOptionsMenuClosed(menu);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -230,6 +251,7 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
         }
     }
 
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         Iterator<Controller> iterator = mControllers.iterator();

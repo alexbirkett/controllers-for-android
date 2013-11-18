@@ -127,6 +127,7 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
         return dialog;
     }
 
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         Iterator<Controller> iterator = mControllers.iterator();

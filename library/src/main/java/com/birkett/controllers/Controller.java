@@ -19,6 +19,7 @@
 package com.birkett.controllers;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,7 +30,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -231,9 +231,9 @@ public abstract class Controller {
 
 
     // Fragment specific methods
-    public void onInflate(FragmentActivity activity, AttributeSet attrs, Bundle savedInstanceState) { }
+    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) { }
 
-    public void onAttach(FragmentActivity activity) { }
+    public void onAttach(Activity activity) { }
 
     //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
 

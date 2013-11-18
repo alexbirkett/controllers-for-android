@@ -22,12 +22,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -57,7 +57,8 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         return mControllers;
     }
 
-    public void onInflate(FragmentActivity activity, AttributeSet attrs, Bundle savedInstanceState) {
+    @Override
+    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(activity, attrs, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
@@ -65,7 +66,8 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
-    public void onAttach(FragmentActivity activity) {
+    @Override
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         Iterator<Controller> iterator = mControllers.iterator();
         while (iterator.hasNext()) {
@@ -75,6 +77,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
 
     //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
 
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -84,6 +87,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         return dialog;
     }
 
+    @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -92,6 +96,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -100,6 +105,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -108,6 +114,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -116,6 +123,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -127,6 +135,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
 
     //public View getView() { return null; }
 
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -135,6 +144,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onStart() {
         super.onStart();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -143,6 +153,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onResume() {
         super.onResume();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -151,6 +162,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -159,6 +171,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -167,6 +180,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onPause() {
         super.onPause();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -175,6 +189,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onStop() {
         super.onStop();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -183,6 +198,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onLowMemory() {
         super.onLowMemory();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -191,6 +207,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -199,6 +216,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onDestroy() {
         super.onDestroy();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -207,6 +225,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onDetach() {
         super.onDetach();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -215,6 +234,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -223,6 +243,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -231,6 +252,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onDestroyOptionsMenu() {
         super.onDestroyOptionsMenu();
         Iterator<Controller> iterator = mControllers.iterator();
@@ -239,6 +261,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean returnValue = super.onOptionsItemSelected(item);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -248,6 +271,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         return returnValue;
     }
 
+    @Override
     public void onOptionsMenuClosed(Menu menu) {
         super.onOptionsMenuClosed(menu);
         Iterator<Controller> iterator = mControllers.iterator();
@@ -256,6 +280,7 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         Iterator<Controller> iterator = mControllers.iterator();
