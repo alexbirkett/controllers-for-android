@@ -14,6 +14,7 @@ gen/
 
 #output files
 library/target
+library/build
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -21,3 +22,6 @@ local.properties
 #InteliJ IDEA Project files
 .idea
 *.iml
+
+#gradle
+.gradle
