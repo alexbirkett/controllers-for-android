@@ -19,8 +19,10 @@
 package com.birkett.controllers;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -28,7 +30,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -45,14 +46,11 @@ import android.view.WindowManager;
 @SuppressLint("NewApi")
 public abstract class Controller {
 
-    protected Context mContext;
-
-    protected Controller(Context context) {
-        mContext = context;
+    protected Controller() {
     }
 
     public void onActivityResult(int requestCode, int resultCode, android.content.Intent data) { }
-    
+
     protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) { }
 
     protected void onCreate(Bundle savedInstanceState) { }
@@ -233,15 +231,17 @@ public abstract class Controller {
 
 
     // Fragment specific methods
-    public void onInflate(FragmentActivity activity, AttributeSet attrs, Bundle savedInstanceState) { }
+    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) { }
 
-    public void onAttach(FragmentActivity activity) { }
+    public void onAttach(Activity activity) { }
 
     //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
 
     public void onViewCreated(View view, Bundle savedInstanceState) { }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState, View view) { return view; }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState, View view) {
+        return view;
+    }
 
     // public View getView() { return null; }
 
@@ -253,4 +253,11 @@ public abstract class Controller {
 
     public void onDestroyOptionsMenu() { }
 
+    // DialogFragment specific methods
+
+    protected Dialog onCreateDialog(Bundle savedInstanceState, Dialog dialog) { return dialog; }
+
+    public void onCancel(DialogInterface dialog) { }
+
+    public void onDismiss(DialogInterface dialog) { }
 }

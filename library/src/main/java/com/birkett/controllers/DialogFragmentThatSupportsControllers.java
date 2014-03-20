@@ -23,9 +23,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -35,11 +37,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class FragmentThatSupportsControllers extends Fragment {
+public abstract class DialogFragmentThatSupportsControllers extends DialogFragment {
 
     protected ArrayList<Controller> mControllers;
 
-    protected FragmentThatSupportsControllers() {
+    protected DialogFragmentThatSupportsControllers() {
         mControllers = new ArrayList<Controller>();
     }
 
@@ -54,7 +56,6 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
     public List getControllersList() {
         return mControllers;
     }
-
 
     @Override
     public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
@@ -75,6 +76,34 @@ public abstract class FragmentThatSupportsControllers extends Fragment {
     }
 
     //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        Iterator<Controller> iterator = mControllers.iterator();
+        while (iterator.hasNext()) {
+            dialog = iterator.next().onCreateDialog(savedInstanceState, dialog);
+        }
+        return dialog;
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
+        Iterator<Controller> iterator = mControllers.iterator();
+        while (iterator.hasNext()) {
+            iterator.next().onCancel(dialog);
+        }
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        Iterator<Controller> iterator = mControllers.iterator();
+        while (iterator.hasNext()) {
+            iterator.next().onDismiss(dialog);
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
