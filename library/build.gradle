@@ -1,14 +1,16 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 25
         versionCode 1
-        versionName "${project.version}"
+        versionName project.version
     }
 
     packagingOptions {
@@ -17,6 +19,50 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "source"
+}
+
+publishing {
+    publications {
+        Publication(MavenPublication) {
+            groupId project.group
+            artifactId 'controllers-for-android'
+            version project.version
+            artifact(sourceJar)
+            artifact("$buildDir/outputs/aar/controllers-for-android-release.aar")
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+
+    publications = ['Publication']
+    dryRun = false
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'controllers-for-android'
+        desc = project.description
+        websiteUrl = 'https://github.com/alexbirkett/controllers-for-android'
+        issueTrackerUrl = 'https://github.com/alexbirkett/controllers-for-android/issues'
+        vcsUrl = 'https://github.com/alexbirkett/controllers-for-android.git'
+        licenses = ['Apache-2.0']
+        labels = ['android', 'controllers', 'single', 'responsible', 'principle']
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+            mavenCentralSync {
+                sync = false
+            }
+        }
+    }
 }
