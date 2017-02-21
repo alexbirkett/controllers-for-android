@@ -31,6 +31,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
@@ -68,45 +69,40 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     public void onContentChanged() {
         super.onContentChanged();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onContentChanged();
+        for (Controller controller : mControllers) {
+            controller.onContentChanged();
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onActivityResult(requestCode, resultCode, data);
+        for (Controller controller : mControllers) {
+            controller.onActivityResult(requestCode, resultCode, data);
         }
     }
 
     @Override
     protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) {
         super.onApplyThemeResource(theme, resid, first);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onApplyThemeResource(theme, resid, first);
+        for (Controller controller : mControllers) {
+            controller.onApplyThemeResource(theme, resid, first);
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onCreate(savedInstanceState);
+        for (Controller controller : mControllers) {
+            controller.onCreate(savedInstanceState);
         }
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
         Dialog dialog = null;
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            dialog = iterator.next().onCreateDialog(id);
+        for (Controller controller : mControllers) {
+            dialog = controller.onCreateDialog(id);
             if (dialog != null) {
                 break;
             }
@@ -117,9 +113,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     protected Dialog onCreateDialog(int id, Bundle args) {
         Dialog dialog = null;
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            dialog = iterator.next().onCreateDialog(id, args);
+        for (Controller controller : mControllers) {
+            dialog = controller.onCreateDialog(id, args);
             if (dialog != null) {
                 break;
             }
@@ -130,45 +125,40 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onDestroy();
+        for (Controller controller : mControllers) {
+            controller.onDestroy();
         }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onNewIntent(intent);
+        for (Controller controller : mControllers) {
+            controller.onNewIntent(intent);
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onPause();
+        for (Controller controller : mControllers) {
+            controller.onPause();
         }
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onPostCreate(savedInstanceState);
+        for (Controller controller : mControllers) {
+            controller.onPostCreate(savedInstanceState);
         }
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onPostResume();
+        for (Controller controller : mControllers) {
+            controller.onPostResume();
         }
     }
 
@@ -176,9 +166,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     protected void onPrepareDialog(int id, Dialog dialog) {
         super.onPrepareDialog(id, dialog);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onPrepareDialog(id, dialog);
+        for (Controller controller : mControllers) {
+            controller.onPrepareDialog(id, dialog);
         }
     }
 
@@ -186,117 +175,104 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
         super.onPrepareDialog(id, dialog, args);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onPrepareDialog(id, dialog, args);
+        for (Controller controller : mControllers) {
+            controller.onPrepareDialog(id, dialog, args);
         }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onRestart();
+        for (Controller controller : mControllers) {
+            controller.onRestart();
         }
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onRestoreInstanceState(savedInstanceState);
+        for (Controller controller : mControllers) {
+            controller.onRestoreInstanceState(savedInstanceState);
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onResume();
+        for (Controller controller : mControllers) {
+            controller.onResume();
         }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onSaveInstanceState(outState);
+        for (Controller controller : mControllers) {
+            controller.onSaveInstanceState(outState);
         }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onStart();
+        for (Controller controller : mControllers) {
+            controller.onStart();
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onStop();
+        for (Controller controller : mControllers) {
+            controller.onStop();
         }
     }
 
     @Override
     protected void onTitleChanged(CharSequence title, int color) {
         super.onTitleChanged(title, color);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onTitleChanged(title, color);
+        for (Controller controller : mControllers) {
+            controller.onTitleChanged(title, color);
         }
     }
 
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onUserLeaveHint();
+        for (Controller controller : mControllers) {
+            controller.onUserLeaveHint();
         }
     }
 
     @Override
     public void onActionModeFinished(ActionMode mode) {
         super.onActionModeFinished(mode);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onActionModeFinished(mode);
+        for (Controller controller : mControllers) {
+            controller.onActionModeFinished(mode);
         }
     }
 
     @Override
     public void onActionModeStarted(ActionMode mode) {
         super.onActionModeStarted(mode);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onActionModeStarted(mode);
+        for (Controller controller : mControllers) {
+            controller.onActionModeStarted(mode);
         }
     }
 
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onAttachFragment(fragment);
+        for (Controller controller : mControllers) {
+            controller.onAttachFragment(fragment);
         }
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onAttachedToWindow();
+        for (Controller controller : mControllers) {
+            controller.onAttachedToWindow();
         }
     }
 
@@ -315,18 +291,16 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onConfigurationChanged(newConfig);
+        for (Controller controller : mControllers) {
+            controller.onConfigurationChanged(newConfig);
         }
     }
 
     @Override
     public void onContextMenuClosed(Menu menu) {
         super.onContextMenuClosed(menu);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onContextMenuClosed(menu);
+        for (Controller controller : mControllers) {
+            controller.onContextMenuClosed(menu);
         }
     }
 
@@ -334,9 +308,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public void onCreateContextMenu(ContextMenu menu, View v,
             ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onCreateContextMenu(menu, v, menuInfo);
+        for (Controller controller : mControllers) {
+            controller.onCreateContextMenu(menu, v, menuInfo);
         }
     }
 
@@ -345,9 +318,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
         CharSequence sequence = super.onCreateDescription();
 
         if (sequence == null) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                sequence = iterator.next().onCreateDescription();
+            for (Controller controller : mControllers) {
+                sequence = controller.onCreateDescription();
                 if (sequence != null) {
                     break;
                 }
@@ -360,9 +332,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         boolean returnValue = super.onCreateOptionsMenu(menu);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().onCreateOptionsMenu(menu, inflater)) {
+        for (Controller controller : mControllers) {
+            if (controller.onCreateOptionsMenu(menu, inflater)) {
                 returnValue = true;
             }
         }
@@ -372,9 +343,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
         boolean returnValue = super.onCreatePanelMenu(featureId, menu);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().onCreatePanelMenu(featureId, menu)) {
+        for (Controller controller : mControllers) {
+            if (controller.onCreatePanelMenu(featureId, menu)) {
                 returnValue = true;
             }
         }
@@ -385,9 +355,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public View onCreatePanelView(int featureId) {
         View view = super.onCreatePanelView(featureId);
         if (view == null) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                view = iterator.next().onCreatePanelView(featureId);
+            for (Controller controller : mControllers) {
+                view = controller.onCreatePanelView(featureId);
                 if (view != null) {
                     break;
                 }
@@ -401,9 +370,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
         boolean result = super.onCreateThumbnail(outBitmap, canvas);
 
         if (!result) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                result = iterator.next().onCreateThumbnail(outBitmap, canvas);
+            for (Controller controller : mControllers) {
+                result = controller.onCreateThumbnail(outBitmap, canvas);
 
                 if (result) {
                     break;
@@ -419,10 +387,9 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
         View view = super.onCreateView(parent, name, context, attrs);
 
         if (view == null) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                view = iterator.next().onCreateView(parent, name, context,
-                        attrs);
+            for (Controller controller : mControllers) {
+                view = controller.onCreateView(parent, name, context,
+                    attrs);
                 if (view != null) {
                     break;
                 }
@@ -436,10 +403,9 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
         View view = super.onCreateView(name, context, attrs);
 
         if (view == null) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                view = iterator.next().onCreateView(name, context,
-                        attrs);
+            for (Controller controller : mControllers) {
+                view = controller.onCreateView(name, context,
+                    attrs);
                 if (view != null) {
                     break;
                 }
@@ -451,9 +417,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onDetachedFromWindow();
+        for (Controller controller : mControllers) {
+            controller.onDetachedFromWindow();
         }
     }
 
@@ -461,9 +426,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onGenericMotionEvent(MotionEvent event) {
         boolean consumed = super.onGenericMotionEvent(event);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onGenericMotionEvent(event);
+            for (Controller controller : mControllers) {
+                consumed = controller.onGenericMotionEvent(event);
                 if (consumed) {
                     break;
                 }
@@ -476,9 +440,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         boolean consumed = super.onKeyDown(keyCode, event);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onKeyDown(keyCode, event);
+            for (Controller controller : mControllers) {
+                consumed = controller.onKeyDown(keyCode, event);
                 if (consumed) {
                     break;
                 }
@@ -491,9 +454,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         boolean consumed = super.onKeyLongPress(keyCode, event);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onKeyLongPress(keyCode, event);
+            for (Controller controller : mControllers) {
+                consumed = controller.onKeyLongPress(keyCode, event);
                 if (consumed) {
                     break;
                 }
@@ -506,9 +468,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
         boolean consumed = super.onKeyMultiple(keyCode, repeatCount, event);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onKeyMultiple(keyCode, repeatCount, event);
+            for (Controller controller : mControllers) {
+                consumed = controller.onKeyMultiple(keyCode, repeatCount, event);
                 if (consumed) {
                     break;
                 }
@@ -521,9 +482,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onKeyShortcut(int keyCode, KeyEvent event) {
         boolean consumed = super.onKeyShortcut(keyCode, event);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onKeyShortcut(keyCode, event);
+            for (Controller controller : mControllers) {
+                consumed = controller.onKeyShortcut(keyCode, event);
                 if (consumed) {
                     break;
                 }
@@ -536,9 +496,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         boolean consumed = super.onKeyUp(keyCode, event);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onKeyUp(keyCode, event);
+            for (Controller controller : mControllers) {
+                consumed = controller.onKeyUp(keyCode, event);
                 if (consumed) {
                     break;
                 }
@@ -550,9 +509,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onLowMemory();
+        for (Controller controller : mControllers) {
+            controller.onLowMemory();
         }
     }
 
@@ -560,9 +518,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         boolean consumed = super.onMenuItemSelected(featureId, item);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onMenuItemSelected(featureId, item);
+            for (Controller controller : mControllers) {
+                consumed = controller.onMenuItemSelected(featureId, item);
                 if (consumed) {
                     break;
                 }
@@ -575,9 +532,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onMenuOpened(int featureId, Menu menu) {
         boolean consumed = super.onMenuOpened(featureId, menu);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onMenuOpened(featureId, menu);
+            for (Controller controller : mControllers) {
+                consumed = controller.onMenuOpened(featureId, menu);
                 if (consumed) {
                     break;
                 }
@@ -590,9 +546,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean consumed = super.onOptionsItemSelected(item);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onOptionsItemSelected(item);
+            for (Controller controller : mControllers) {
+                consumed = controller.onOptionsItemSelected(item);
                 if (consumed) {
                     break;
                 }
@@ -604,18 +559,16 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     public void onOptionsMenuClosed(Menu menu) {
         super.onOptionsMenuClosed(menu);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onOptionsMenuClosed(menu);
+        for (Controller controller : mControllers) {
+            controller.onOptionsMenuClosed(menu);
         }
     }
 
     @Override
     public void onPanelClosed(int featureId, Menu menu) {
         super.onPanelClosed(featureId, menu);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onPanelClosed(featureId, menu);
+        for (Controller controller : mControllers) {
+            controller.onPanelClosed(featureId, menu);
         }
     }
 
@@ -623,9 +576,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean consumed = super.onPrepareOptionsMenu(menu);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onPrepareOptionsMenu(menu);
+            for (Controller controller : mControllers) {
+                consumed = controller.onPrepareOptionsMenu(menu);
                 if (consumed) {
                     break;
                 }
@@ -638,9 +590,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onPreparePanel(int featureId, View view, Menu menu) {
         boolean consumed = super.onPreparePanel(featureId, view, menu);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onPreparePanel(featureId, view, menu);
+            for (Controller controller : mControllers) {
+                consumed = controller.onPreparePanel(featureId, view, menu);
                 if (consumed) {
                     break;
                 }
@@ -654,9 +605,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
         Object object = super.onRetainCustomNonConfigurationInstance();
 
         if (object == null) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                object = iterator.next().onRetainNonConfigurationInstance();
+            for (Controller controller : mControllers) {
+                object = controller.onRetainNonConfigurationInstance();
                 if (object != null) {
                     break;
                 }
@@ -669,9 +619,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onSearchRequested() {
         boolean consumed = super.onSearchRequested();
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onSearchRequested();
+            for (Controller controller : mControllers) {
+                consumed = controller.onSearchRequested();
                 if (consumed) {
                     break;
                 }
@@ -684,9 +633,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onTouchEvent(MotionEvent event) {
         boolean consumed = super.onTouchEvent(event);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onTouchEvent(event);
+            for (Controller controller : mControllers) {
+                consumed = controller.onTouchEvent(event);
                 if (consumed) {
                     break;
                 }
@@ -699,9 +647,8 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     public boolean onTrackballEvent(MotionEvent event) {
         boolean consumed = super.onTrackballEvent(event);
         if (!consumed) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                consumed = iterator.next().onTrackballEvent(event);
+            for (Controller controller : mControllers) {
+                consumed = controller.onTrackballEvent(event);
                 if (consumed) {
                     break;
                 }
@@ -713,36 +660,32 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onTrimMemory(level);
+        for (Controller controller : mControllers) {
+            controller.onTrimMemory(level);
         }
     }
 
     @Override
     public void onUserInteraction() {
         super.onUserInteraction();
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onUserInteraction();
+        for (Controller controller : mControllers) {
+            controller.onUserInteraction();
         }
     }
 
     @Override
     public void onWindowAttributesChanged(WindowManager.LayoutParams params) {
         super.onWindowAttributesChanged(params);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onWindowAttributesChanged(params);
+        for (Controller controller : mControllers) {
+            controller.onWindowAttributesChanged(params);
         }
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        Iterator<Controller> iterator = mControllers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().onWindowFocusChanged(hasFocus);
+        for (Controller controller : mControllers) {
+            controller.onWindowFocusChanged(hasFocus);
         }
     }
 
@@ -751,14 +694,53 @@ public abstract class ActivityThatSupportsControllers extends FragmentActivity {
         ActionMode actionMode = super.onWindowStartingActionMode(callback);
 
         if (actionMode == null) {
-            Iterator<Controller> iterator = mControllers.iterator();
-            while (iterator.hasNext()) {
-                actionMode = iterator.next().onWindowStartingActionMode(callback);
+            for (Controller controller : mControllers) {
+                actionMode = controller.onWindowStartingActionMode(callback);
                 if (actionMode != null) {
                     break;
                 }
             }
         }
         return actionMode;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for (Controller controller : mControllers) {
+            controller.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    @Override
+    public void onMultiWindowModeChanged(boolean isInMultiWindowMode) {
+        super.onMultiWindowModeChanged(isInMultiWindowMode);
+        for (Controller controller : mControllers) {
+            controller.onMultiWindowModeChanged(isInMultiWindowMode);
+        }
+    }
+
+    @Override
+    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
+        for (Controller controller : mControllers) {
+            controller.onPictureInPictureModeChanged(isInPictureInPictureMode);
+        }
+    }
+
+    @Override
+    public void onStateNotSaved() {
+        super.onStateNotSaved();
+        for (Controller controller : mControllers) {
+            controller.onStateNotSaved();
+        }
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        for (Controller controller : mControllers) {
+            controller.onResumeFragments();
+        }
     }
 }
