@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 25
@@ -20,9 +21,12 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:25.1.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
+checkstyle {
+    toolVersion = "6.15"
+    configFile = new File(rootDir, 'checkstyle.xml')
+}
 
 task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
