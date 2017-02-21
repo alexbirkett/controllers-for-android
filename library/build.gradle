@@ -40,14 +40,17 @@ publishing {
             artifactId 'controllers-for-android'
             version project.version
             artifact(sourceJar)
-            artifact("$buildDir/outputs/aar/controllers-for-android-release.aar")
+            artifact("$buildDir/outputs/aar/library-release.aar")
         }
     }
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
 
     publications = ['Publication']
     dryRun = false
