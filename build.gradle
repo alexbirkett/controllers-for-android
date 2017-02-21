@@ -10,9 +10,8 @@ buildscript {
 
 allprojects {
     group = "no.birkett"
-    version = "20170221"
+    version = "1.0.0"
     description = "Helping to bring the single responsibility principle to Android development"
-
     ext.versionName = "Controllers For Android Library"
 }
 
