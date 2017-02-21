@@ -1,0 +1,22 @@
+language: android
+android:
+  components:
+  - tools
+  - platform-tools
+  - build-tools-25
+  - android-25
+  - extra-android-m2repository
+jdk:
+- oraclejdk8
+env:
+  global:
+  # make sure to add BINTRAY_USER and BINTRAY_KEY encrypted variables here.
+script:
+ - ./gradlew check build
+deploy:
+  provider: script
+  script: ./gradlew publish bintrayUpload
+  on:
+    tags: true
+    branch: master
+

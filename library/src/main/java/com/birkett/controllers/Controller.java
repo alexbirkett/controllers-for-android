@@ -227,13 +227,28 @@ public abstract class Controller {
         return null;
     }
 
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) { }
+
+    public void onMultiWindowModeChanged(boolean isInMultiWindowMode) { }
+
+    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) { }
+
+    public void onStateNotSaved() { }
+
+    public void onResumeFragments() { }
 
 
 
     // Fragment specific methods
+    @Deprecated
     public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) { }
 
+    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) { }
+
+    @Deprecated
     public void onAttach(Activity activity) { }
+
+    public void onAttach(Context context) { }
 
     //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
 

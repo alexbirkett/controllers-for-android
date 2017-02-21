@@ -1,24 +1,72 @@
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'checkstyle'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 19
+        minSdkVersion 9
+        targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName project.version
     }
-    buildTypes {
-        release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-        }
+
+    packagingOptions {
+        exclude 'AndroidManifest.xml'
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:+'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:25.1.1'
+}
+
+checkstyle {
+    toolVersion = "6.15"
+    configFile = new File(rootDir, 'checkstyle.xml')
+}
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "source"
+}
+
+publishing {
+    publications {
+        Publication(MavenPublication) {
+            groupId project.group
+            artifactId 'controllers-for-android'
+            version project.version
+            artifact(sourceJar)
+            artifact("$buildDir/outputs/aar/controllers-for-android-release.aar")
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+
+    publications = ['Publication']
+    dryRun = false
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'controllers-for-android'
+        desc = project.description
+        websiteUrl = 'https://github.com/alexbirkett/controllers-for-android'
+        issueTrackerUrl = 'https://github.com/alexbirkett/controllers-for-android/issues'
+        vcsUrl = 'https://github.com/alexbirkett/controllers-for-android.git'
+        licenses = ['Apache-2.0']
+        labels = ['android', 'controllers', 'single', 'responsible', 'principle']
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+            mavenCentralSync {
+                sync = false
+            }
+        }
+    }
 }

@@ -1,15 +1,21 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:2.3.0-beta4'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
 
-/**
- * Task to generate a gradle wrapper.
- */
+allprojects {
+    group = "no.birkett"
+    version = "20170221"
+    description = "Helping to bring the single responsibility principle to Android development"
+
+    ext.versionName = "Controllers For Android Library"
+}
+
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+    gradleVersion = '3.3'
 }
