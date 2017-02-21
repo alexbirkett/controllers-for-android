@@ -16,7 +16,7 @@
  *
  */
 
-package com.birkett.controllers;
+package no.birkett.controllers;
 
 import java.util.Iterator;
 import java.util.ArrayList;

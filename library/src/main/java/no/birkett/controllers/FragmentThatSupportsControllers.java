@@ -16,19 +16,18 @@
  *
  */
 
-package com.birkett.controllers;
+package no.birkett.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -38,11 +37,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class DialogFragmentThatSupportsControllers extends DialogFragment {
+public abstract class FragmentThatSupportsControllers extends Fragment {
 
     protected ArrayList<Controller> mControllers;
 
-    protected DialogFragmentThatSupportsControllers() {
+    protected FragmentThatSupportsControllers() {
         mControllers = new ArrayList<Controller>();
     }
 
@@ -58,7 +57,9 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         return mControllers;
     }
 
+
     @Override
+    @Deprecated
     public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(activity, attrs, savedInstanceState);
         for (Controller controller : mControllers) {
@@ -67,6 +68,15 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
     }
 
     @Override
+    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+        super.onInflate(context, attrs, savedInstanceState);
+        for (Controller controller : mControllers) {
+            controller.onInflate(context, attrs, savedInstanceState);
+        }
+    }
+
+    @Override
+    @Deprecated
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         for (Controller controller : mControllers) {
@@ -74,32 +84,15 @@ public abstract class DialogFragmentThatSupportsControllers extends DialogFragme
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        for (Controller controller : mControllers) {
+            controller.onAttach(context);
+        }
+    }
+
     //public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) { return null; }
-
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        for (Controller controller : mControllers) {
-            dialog = controller.onCreateDialog(savedInstanceState, dialog);
-        }
-        return dialog;
-    }
-
-    @Override
-    public void onCancel(DialogInterface dialog) {
-        super.onCancel(dialog);
-        for (Controller controller : mControllers) {
-            controller.onCancel(dialog);
-        }
-    }
-
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        for (Controller controller : mControllers) {
-            controller.onDismiss(dialog);
-        }
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -16,7 +16,7 @@
  *
  */
 
-package com.birkett.controllers;
+package no.birkett.controllers;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
