@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    compile('no.birkett:controllers-for-android:20170221')
+    compile 'no.birkett:controllers-for-android:1.0.0'
 }
 ```
 ## License
